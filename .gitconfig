@@ -1,0 +1,12 @@
+[user]
+    email = coltenbegle@icloud.com
+    name = Colten Begle
+
+[diff]
+    tool = nvimdiff
+
+[difftool]
+    prompt = false
+
+[init]
+	defaultBranch = master
