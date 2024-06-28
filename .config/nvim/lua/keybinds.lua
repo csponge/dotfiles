@@ -48,3 +48,16 @@ map('n', '<leader>f', '<cmd>Telescope find_files<cr>', opts)
 map('n', '<leader>g', '<cmd>Telescope live_grep<cr>', opts)
 map('n', '<leader>s', '<cmd>Telescope grep_string<cr>', opts)
 map('n', '<leader>b', '<cmd>Telescope buffers<cr>', opts)
+-- }}}
+
+local function toggle_background()
+    local b = vim.o.background
+    if b == 'dark' then
+        b = 'light'
+    else
+        b = 'dark'
+    end
+    vim.o.background = b
+end
+
+map('n', '<leader>t', function() toggle_background() end, opts)

@@ -49,12 +49,6 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
-;; opacity
-;; (set-frame-parameter nil 'alpha-background 95)
-
-;; (add-to-list 'default-frame-alist '(alpha-background . 95))
-
-
 ;; gdb
 (setq gdb-many-windows 1)
 
@@ -73,17 +67,13 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; evil
+(use-package evil)
+(evil-mode 1)
+
 ;; yasnippet
 (use-package yasnippet
   :init (yas-global-mode 1))
-
-;; vertico
-(use-package vertico
-  :init (vertico-mode 1))
-
-;; Which-key
-(use-package which-key
-  :init (which-key-mode 1))
 
 (use-package vterm
   :ensure t)
@@ -137,5 +127,17 @@
   :ensure t)
 
 ;; keybinds
-(keymap-global-set "C-c C-u" 'uncomment-region)
+
+;; flymake
+(define-key evil-normal-state-map (kbd "[d") 'flymake-goto-prev-error)
+(define-key evil-normal-state-map (kbd "]d") 'flymake-goto-prev-error)
+
+;; comments
+(define-key evil-normal-state-map (kbd "gc") 'comment-or-uncomment-region)
+
+(define-key evil-normal-state-map (kbd "C-u") 'scroll-down-command)
 (keymap-global-set "C-c e" 'eval-buffer)
+
+;; tabs
+(setq-default tab-width 4)
+(setq-default c-basic-offset 4)

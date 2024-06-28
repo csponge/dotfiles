@@ -27,7 +27,7 @@ vim.o.wrap           = true
 vim.o.rnu            = true -- Relative numbers
 vim.o.number         = true -- numbers
 vim.wo.cursorline    = true
-vim.o.background     = 'dark'
+vim.o.background     = 'light'
 vim.g.have_nerd_font = true
 
 vim.o.hlsearch       = false
@@ -64,4 +64,4 @@ vim.cmd('set grepprg=rg\\ --vimgrep\\ --no-heading\\ --smart-case')
 
 -- }}}
 
-vim.cmd.colorscheme("slate")
+vim.cmd.colorscheme("default")
