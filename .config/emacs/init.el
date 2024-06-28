@@ -40,7 +40,7 @@
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; theme
-(load-theme 'tango-dark)
+(load-theme 'tango)
 
 ;; Changing bar
 (setq-default cursor-type 't)
@@ -97,12 +97,10 @@
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
   (add-to-list 'eglot-server-programs '((tuareg-mode) "ocamllsp")))
 
-(add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1)))
-
-(define-key evil-normal-state-map (kbd "<leader>r") 'eglot-rename)
-(define-key evil-normal-state-map (kbd "<leader>d") 'eglot-format-buffer)
-(define-key evil-normal-state-map (kbd "[d") 'flymake-goto-prev-error)
-(define-key evil-normal-state-map (kbd "]d") 'flymake-goto-prev-error)
+(keymap-global-set "C-c r" 'eglot-rename)
+(keymap-global-set "C-c f" 'eglot-format-buffer)
+(keymap-global-set "C-c d n" 'flymake-goto-next-error)
+(keymap-global-set "C-c d p" 'flymake-goto-prev-error)
 
 ;; Company
 (use-package company
@@ -112,7 +110,7 @@
     (tuareg-mode . company-mode))
 
 (setq company-minimum-prefix-length 1
-      company-idle-delay 1)
+      company-idle-delay 0.0)
 
 (use-package magit
   :config

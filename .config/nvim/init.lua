@@ -17,7 +17,6 @@ vim.g.mapleader = " "
 require("lazy").setup("plugins")
 require('keybinds')
 require('lsp')
-require('snippets')
 
 -- {{{ options
 -- Visual

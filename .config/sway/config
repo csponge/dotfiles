@@ -188,8 +188,6 @@ input "*" {
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPrev exec playerctl previous
-
-    bindsym Mod1+e exec emacsclient --create-frame --alternate-editor=""
 #
 # Resizing containers:
 #
@@ -223,17 +221,7 @@ for_window [app_id="life"] floating enable
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-
 bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while ~/.config/sway/status.sh; do sleep 0; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    swaybar_command waybar
 }
+
