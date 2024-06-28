@@ -71,6 +71,8 @@
 (use-package evil)
 (evil-mode 1)
 
+(evil-set-leader 'normal (kbd "SPC"))
+
 ;; yasnippet
 (use-package yasnippet
   :init (yas-global-mode 1))
@@ -97,10 +99,10 @@
 
 (add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1)))
 
-(keymap-global-set "C-c r" 'eglot-rename)
-(keymap-global-set "C-c f" 'eglot-format-buffer)
-(keymap-global-set "C-c d n" 'flymake-goto-next-error)
-(keymap-global-set "C-c d p" 'flymake-goto-prev-error)
+(define-key evil-normal-state-map (kbd "<leader>r") 'eglot-rename)
+(define-key evil-normal-state-map (kbd "<leader>d") 'eglot-format-buffer)
+(define-key evil-normal-state-map (kbd "[d") 'flymake-goto-prev-error)
+(define-key evil-normal-state-map (kbd "]d") 'flymake-goto-prev-error)
 
 ;; Company
 (use-package company
@@ -114,7 +116,7 @@
 
 (use-package magit
   :config
-  (global-set-key (kbd "C-c g") 'magit))
+  (define-key evil-normal-state-map (kbd "<leader>g") 'magit))
 
 ;; windmove
 (use-package windmove
@@ -126,16 +128,14 @@
 (use-package tuareg
   :ensure t)
 
-;; keybinds
-
-;; flymake
-(define-key evil-normal-state-map (kbd "[d") 'flymake-goto-prev-error)
-(define-key evil-normal-state-map (kbd "]d") 'flymake-goto-prev-error)
-
+;; extra keybinds
 ;; comments
 (define-key evil-normal-state-map (kbd "gc") 'comment-or-uncomment-region)
 
+;; window
 (define-key evil-normal-state-map (kbd "C-u") 'scroll-down-command)
+
+;; elisp
 (keymap-global-set "C-c e" 'eval-buffer)
 
 ;; tabs
