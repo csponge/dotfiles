@@ -29,18 +29,8 @@
 
 (setq-default line-spacing 0.12)
 
-;; line numbers
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode)
-
-(dolist (mode '(term-mode-hook
-		eshell-mode-hook
-		help-mode-hook
-		vterm-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
 ;; theme
-(load-theme 'tango)
+(load-theme 'modus-vivendi)
 
 ;; Changing bar
 (setq-default cursor-type 't)
@@ -67,12 +57,6 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; evil
-(use-package evil)
-(evil-mode 1)
-
-(evil-set-leader 'normal (kbd "SPC"))
-
 ;; yasnippet
 (use-package yasnippet
   :init (yas-global-mode 1))
@@ -98,23 +82,13 @@
   (add-to-list 'eglot-server-programs '((tuareg-mode) "ocamllsp")))
 
 (keymap-global-set "C-c r" 'eglot-rename)
-(keymap-global-set "C-c f" 'eglot-format-buffer)
-(keymap-global-set "C-c d n" 'flymake-goto-next-error)
-(keymap-global-set "C-c d p" 'flymake-goto-prev-error)
-
-;; Company
-(use-package company
-  :hook
-    (c-mode . company-mode)
-    (c++-mode . company-mode)
-    (tuareg-mode . company-mode))
-
-(setq company-minimum-prefix-length 1
-      company-idle-delay 0.0)
+(keymap-global-set "C-c d" 'eglot-format-buffer)
+(keymap-global-set "M-]" 'flymake-goto-next-error)
+(keymap-global-set "M-[" 'flymake-goto-prev-error)
 
 (use-package magit
   :config
-  (define-key evil-normal-state-map (kbd "<leader>g") 'magit))
+  (keymap-global-set "C-c g" 'magit))
 
 ;; windmove
 (use-package windmove
@@ -127,13 +101,6 @@
   :ensure t)
 
 ;; extra keybinds
-;; comments
-(define-key evil-normal-state-map (kbd "gc") 'comment-or-uncomment-region)
-
-;; window
-(define-key evil-normal-state-map (kbd "C-u") 'scroll-down-command)
-
-;; elisp
 (keymap-global-set "C-c e" 'eval-buffer)
 
 ;; tabs

@@ -1,23 +1,14 @@
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.opam/default/bin:$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/colten/.zshrc'
 
-alias nvimd="$HOME/projects/neovim/build/bin/nvim"
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-ZSH_THEME="robbyrussell"
-
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-export CDPATH="$HOME/projects:..:$CDPATH"
-
-# keybinds
-function tmux-sessionizer {
-    $($HOME/.local/bin/tmux-sessionizer.sh)
-}
-
-zle -N tmux-sessionizer
-
-bindkey '^o' tmux-sessionizer
+export PATH=$HOME/.local/bin:$PATH
