@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup("plugins")
+require('autocmds')
 require('keybinds')
 require('lsp')
 
@@ -26,7 +27,7 @@ vim.o.wrap           = true
 vim.o.rnu            = true -- Relative numbers
 vim.o.number         = true -- numbers
 vim.wo.cursorline    = true
-vim.o.background     = 'light'
+vim.o.background     = 'dark'
 vim.g.have_nerd_font = true
 
 vim.o.hlsearch       = false
@@ -57,10 +58,8 @@ vim.opt.wildmenu     = true
 vim.opt.wildmode     = 'longest,full' -- Display auto-complete in Command Mode
 vim.opt.wildoptions  = 'fuzzy'
 vim.opt.path:append('**')
-
-vim.cmd('set grepprg=rg\\ --vimgrep\\ --no-heading\\ --smart-case')
 -- }}}
 
 -- }}}
 
-vim.cmd.colorscheme("default")
+vim.cmd.colorscheme("slated")
