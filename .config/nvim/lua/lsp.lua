@@ -12,11 +12,12 @@ local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     map('n', '<S-k>', vim.lsp.buf.hover, bufopts)
     map('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    map('n', 'gr', vim.lsp.buf.references, bufopts)
+    map('n', 'gr', '<cmd>Telescope lsp_references<cr>', bufopts)
     map('n', 'gi', vim.lsp.buf.implementation, bufopts)
     map('n', 'gs', vim.lsp.buf.signature_help, bufopts)
     map('n', 'gd', vim.lsp.buf.definition, bufopts)
     map('n', '<leader>r', vim.lsp.buf.rename, bufopts)
+    map('n', '<leader>o', '<cmd>Telescope lsp_document_symbols<cr>', bufopts)
     map('n', '<leader>a', vim.lsp.buf.code_action, bufopts)
     map('n', '<leader>d', function() vim.lsp.buf.format { async = true } end, bufopts)
     map('n', '<leader>e', vim.diagnostic.open_float, bufopts)
@@ -55,6 +56,17 @@ vim.api.nvim_create_autocmd('BufEnter', {
             name = 'ocamllsp',
             cmd = { 'ocamllsp' },
             root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'dune-project' }, { upward = true })[1]),
+        })
+    end
+})
+
+vim.api.nvim_create_autocmd('BufEnter', {
+    pattern = { "*.go" },
+    callback = function(args)
+        vim.lsp.start({
+            name = 'gopls',
+            cmd = { 'gopls' },
+            root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'go.mod' }, { upward = true })[1]),
         })
     end
 })

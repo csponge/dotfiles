@@ -11,4 +11,4 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH

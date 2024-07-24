@@ -62,4 +62,4 @@ vim.opt.path:append('**')
 
 -- }}}
 
-vim.cmd.colorscheme("slated")
+vim.cmd.colorscheme("gruber-darker")

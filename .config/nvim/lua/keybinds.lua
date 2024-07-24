@@ -61,3 +61,25 @@ local function toggle_background()
 end
 
 map('n', '<leader>t', function() toggle_background() end, opts)
+
+local function restart_lsp()
+    local clients = vim.lsp.get_active_clients()
+    vim.lsp.stop_client(clients)
+    vim.cmd(":edit")
+    print("lsp restarted")
+end
+
+map('n', '<leader>lr', function() restart_lsp() end, opts)
+
+-- {{{ luasnip
+local ls = require('luasnip')
+map({'i'}, '<C-K>', function() ls.expand() end, {silent = true})
+map({'i', 's'}, "<C-L>", function() ls.jump(1) end, {silent = true})
+map({'i', 's'}, '<C-J>', function() ls.jump(-1) end, {silent = true})
+
+map({'i', 's'}, '<C-E>', function()
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
+end, {silent = true})
+-- }}}
