@@ -25,7 +25,7 @@
 		    :height 110
 		    :weight 'medium)
 
-(add-to-list 'default-frame-alist '(font . "IosevkaNerdFontMono-10"))
+(add-to-list 'default-frame-alist '(font . "IosevkaNerdFontMono-11"))
 
 (setq-default line-spacing 0.12)
 
@@ -44,7 +44,7 @@
 
 ;; path
 (setenv "PATH" (concat (getenv "PATH")
-		       ":/usr/local/bin:/home/colten/go/bin"))
+		       ":/usr/local/bin:/usr/local/go/bin:/home/colten/go/bin"))
 
 ;; Package management
 (require 'package)
@@ -88,8 +88,10 @@
 (use-package eglot
   :hook
   (c-mode . eglot-ensure)
+  (c++-mode . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs '((c-mode) "clangd"))
+  (add-to-list 'eglot-server-programs '((c++-mode) "clangd"))
   (add-to-list 'eglot-server-programs '((go-mode) "gopls")))
 
 (keymap-global-set "C-c r" 'eglot-rename)
@@ -123,6 +125,14 @@
 
 (add-hook 'c-mode-hook 'c-hook)
 
+(defun c++-hook()
+  (setq tab-width 4)
+  (setq c-basic-offset 4)
+  (display-line-numbers-mode)
+  (setq display-line-numbers 'relative))
+
+(add-hook 'c++-mode-hook 'c++-hook)
+
 (defun go-hook()
   (eglot-ensure)
   (setq tab-width 4)
@@ -137,6 +147,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("e27c9668d7eddf75373fa6b07475ae2d6892185f07ebed037eedf783318761d7" "9fb561389e5ac5b9ead13a24fb4c2a3544910f67f12cfcfe77b75f36248017d0" default))
+ '(exec-path
+   '("/usr/lib64/ccache" "/usr/local/bin" "/usr/local/sbin" "/usr/bin" "/usr/sbin" "/usr/libexec/emacs/29.4/x86_64-redhat-linux-gnu" "/usr/local/go/bin" "/home/colten/go/bin" "/usr/local/go"))
  '(package-selected-packages
    '(gruber-darker-theme yasnippet vterm tuareg tree-sitter prescient magit goto-chg go-mode)))
 (custom-set-faces

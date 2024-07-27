@@ -15,5 +15,6 @@ return {
         vim.g.gruvbox_material_enable_italic = true
       end
     },
-    { "blazkowolf/gruber-darker.nvim" }
+    { "blazkowolf/gruber-darker.nvim" },
+    { "rose-pine/neovim", name = "rose-pine" }
 }

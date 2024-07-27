@@ -22,12 +22,14 @@ set $term alacritty
 # on the original workspace that the command was run on.
 set $menu dmenu_run
 
+set $background #51414F
+
 output eDP-1 {
-  bg ~/Pictures/wallpapers/snowy-day.jpg fill
+  bg $background solid_color
   scale 1.75
 }
 output DP-2 {
-  bg ~/Pictures/wallpapers/snowy-day.jpg fill
+  bg $background solid_color
 }
 
 #
