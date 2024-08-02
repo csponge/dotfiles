@@ -16,5 +16,5 @@ return {
       end
     },
     { "blazkowolf/gruber-darker.nvim" },
-    { "rose-pine/neovim", name = "rose-pine" }
+    { "rose-pine/neovim", name = "rose-pine" },
 }

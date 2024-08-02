@@ -14,7 +14,7 @@
 ;; Fonts
 (set-face-attribute 'default nil
 		    :font "IosevkaNerdFontMono"
-		    :height 100
+		    :height 110
 		    :weight 'medium)
 (set-face-attribute 'variable-pitch nil
 		    :font "IosevkaNerdFontMono"
@@ -29,8 +29,8 @@
 
 (setq-default line-spacing 0.12)
 
-;; theme
-(load-theme 'gruber-darker)
+;; load theme
+(load-theme 'deeper-blue)
 
 ;; Changing bar
 (setq-default cursor-type 't)
@@ -61,35 +61,13 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; gruber
-(use-package gruber-darker-theme)
+;; vertico
+(use-package vertico
+  :init
+  (vertico-mode))
 
-;; yasnippet
-(use-package yasnippet
-  :init (yas-global-mode 1))
-
-(use-package vterm
-  :ensure t)
-
-;; go
-(use-package go-mode)
-
-;; Treesitter
-(use-package tree-sitter)
-
-(setq treesit-language-source-alist
-	  '((go "https://github.com/tree-sitter/tree-sitter-go")
-	    (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
-	    (c "https://github.com/tree-sitter/tree-sitter-c")))
-
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-
-;; Eglot
-(use-package eglot
-  :hook
-  (c-mode . eglot-ensure)
-  (c++-mode . eglot-ensure)
-  :config
+(use-package orderless
+  :custom
   (add-to-list 'eglot-server-programs '((c-mode) "clangd"))
   (add-to-list 'eglot-server-programs '((c++-mode) "clangd"))
   (add-to-list 'eglot-server-programs '((go-mode) "gopls")))
@@ -98,6 +76,10 @@
 (keymap-global-set "C-c d" 'eglot-format-buffer)
 (keymap-global-set "M-]" 'flymake-goto-next-error)
 (keymap-global-set "M-[" 'flymake-goto-prev-error)
+(keymap-global-set "C-c k" 'eldoc)
+
+;; Company
+(use-package company)
 
 (use-package magit
   :config
@@ -121,6 +103,7 @@
   (setq tab-width 4)
   (setq c-basic-offset 4)
   (display-line-numbers-mode)
+  (company-mode)
   (setq display-line-numbers 'relative))
 
 (add-hook 'c-mode-hook 'c-hook)
@@ -129,6 +112,7 @@
   (setq tab-width 4)
   (setq c-basic-offset 4)
   (display-line-numbers-mode)
+  (company-mode)
   (setq display-line-numbers 'relative))
 
 (add-hook 'c++-mode-hook 'c++-hook)
@@ -137,23 +121,13 @@
   (eglot-ensure)
   (setq tab-width 4)
   (display-line-numbers-mode)
+  (company-mode)
   (setq display-line-numbers 'relative))
 
 (add-hook 'go-mode-hook 'go-hook)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("e27c9668d7eddf75373fa6b07475ae2d6892185f07ebed037eedf783318761d7" "9fb561389e5ac5b9ead13a24fb4c2a3544910f67f12cfcfe77b75f36248017d0" default))
- '(exec-path
-   '("/usr/lib64/ccache" "/usr/local/bin" "/usr/local/sbin" "/usr/bin" "/usr/sbin" "/usr/libexec/emacs/29.4/x86_64-redhat-linux-gnu" "/usr/local/go/bin" "/home/colten/go/bin" "/usr/local/go"))
- '(package-selected-packages
-   '(gruber-darker-theme yasnippet vterm tuareg tree-sitter prescient magit goto-chg go-mode)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(defun elisp-hook()
+  (display-line-numbers-mode)
+  (setq display-line-numbers 'relative))
+
+(add-hook 'emacs-lisp-hook 'elisp-hook)
