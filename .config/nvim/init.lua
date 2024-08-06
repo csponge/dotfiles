@@ -62,4 +62,4 @@ vim.opt.path:append('**')
 
 -- }}}
 
-vim.cmd.colorscheme("rose-pine-moon")
+vim.cmd.colorscheme("material-darker")
