@@ -1,14 +1,14 @@
 -- setup lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -17,6 +17,7 @@ vim.g.mapleader = " "
 require("lazy").setup("plugins")
 require('autocmds')
 require('keybinds')
+require('snip')
 require('lsp')
 
 -- {{{ options
@@ -54,6 +55,7 @@ vim.opt.ignorecase   = true
 vim.opt.smartcase    = true
 vim.opt.updatetime   = 250
 vim.opt.scrolloff    = 10
+vim.opt.incsearch    = true
 vim.opt.wildmenu     = true
 vim.opt.wildmode     = 'longest,full' -- Display auto-complete in Command Mode
 vim.opt.wildoptions  = 'fuzzy'

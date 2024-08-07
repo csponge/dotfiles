@@ -1,8 +1,3 @@
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-    pattern = {"*"},
-    command = "copen",
-})
-
 vim.api.nvim_create_autocmd('TermOpen', {
     pattern = "*",
     callback = function(args)

@@ -15,10 +15,10 @@ map('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- }}}
 
 -- {{{ window movement
-map('n', "<S-Up>", "<cmd>winc k<cr>", opts)
-map('n', "<S-Down>", "<cmd>winc j<cr>", opts)
-map('n', "<S-Left>", "<cmd>winc h<cr>", opts)
-map('n', "<S-Right>", "<cmd>winc l<cr>", opts)
+map('n', "<C-Up>", "<cmd>winc k<cr>", opts)
+map('n', "<C-Down>", "<cmd>winc j<cr>", opts)
+map('n', "<C-Left>", "<cmd>winc h<cr>", opts)
+map('n', "<C-Right>", "<cmd>winc l<cr>", opts)
 -- }}}
 
 map('n', '<C-s>', '<cmd> source %<cr>', opts)
@@ -50,7 +50,7 @@ map('n', '<leader>s', '<cmd>Telescope grep_string<cr>', opts)
 map('n', '<leader>b', '<cmd>Telescope buffers<cr>', opts)
 -- }}}
 
-local function toggle_background()
+map('n', '<leader>t', function()
     local b = vim.o.background
     if b == 'dark' then
         b = 'light'
@@ -58,9 +58,7 @@ local function toggle_background()
         b = 'dark'
     end
     vim.o.background = b
-end
-
-map('n', '<leader>t', function() toggle_background() end, opts)
+end, opts)
 
 local function restart_lsp()
     local clients = vim.lsp.get_active_clients()
@@ -73,13 +71,16 @@ map('n', '<leader>lr', function() restart_lsp() end, opts)
 
 -- {{{ luasnip
 local ls = require('luasnip')
-map({'i'}, '<C-K>', function() ls.expand() end, {silent = true})
-map({'i', 's'}, "<C-L>", function() ls.jump(1) end, {silent = true})
-map({'i', 's'}, '<C-J>', function() ls.jump(-1) end, {silent = true})
 
-map({'i', 's'}, '<C-E>', function()
+map('n', '<leader><leader>s', "<cmd> source /home/colten/.config/nvim/lua/snip.lua<cr>", opts)
+
+map({ 'i' }, '<C-k>', function() ls.expand() end, { silent = true })
+map({ 'i', 's' }, "<C-n>", function() ls.jump(1) end, { silent = true })
+map({ 'i', 's' }, '<C-p>', function() ls.jump(-1) end, { silent = true })
+
+map({ 'i', 's' }, '<C-e>', function()
     if ls.choice_active() then
         ls.change_choice(1)
     end
-end, {silent = true})
+end, { silent = true })
 -- }}}
