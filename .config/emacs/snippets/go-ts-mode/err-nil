@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Go Err Check
+# key: en
+# --
+if err $1 nil {
+   $0
+}

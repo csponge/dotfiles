@@ -13,7 +13,7 @@
 
 (add-to-list 'default-frame-alist '(font . "IosevkaNerdFontMono-11"))
 
-(load-theme 'modus-operandi)
+(load-theme 'wombat)
 
 (setq-default line-spacing 0.12)
 
