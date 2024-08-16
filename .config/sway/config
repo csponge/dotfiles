@@ -4,6 +4,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+exec emacs --daemon &
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -23,11 +25,11 @@ set $menu dmenu_run
 set $background #51414F
 
 output eDP-1 {
-  bg $background solid_color
+  bg ~/Pictures/Wallpapers/purple_mountains.jpg fill
   scale 1.75
 }
 output DP-2 {
-  bg $background solid_color
+  bg ~/Pictures/Wallpapers/purple_mountains.jpg fill
 }
 
 #

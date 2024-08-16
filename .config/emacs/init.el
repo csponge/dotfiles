@@ -11,21 +11,9 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
-;; Fonts
-(set-face-attribute 'default nil
-		    :font "IosevkaNerdFontMono"
-		    :height 110
-		    :weight 'medium)
-(set-face-attribute 'variable-pitch nil
-		    :font "IosevkaNerdFontMono"
-		    :height 110
-		    :weight 'medium)
-(set-face-attribute 'fixed-pitch nil
-		    :font "IosevkaNerdFontMono"
-		    :height 110
-		    :weight 'medium)
-
 (add-to-list 'default-frame-alist '(font . "IosevkaNerdFontMono-11"))
+
+(load-theme 'modus-operandi)
 
 (setq-default line-spacing 0.12)
 
@@ -60,27 +48,14 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; theme
-(use-package doom-themes
-  :ensure t
-  :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-	doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-material-dark t)
-
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
-
 ;; treesitter
 (setq treesit-language-source-alist
       '((go "https://github.com/tree-sitter/tree-sitter-go")
 	(c "https://github.com/tree-sitter/tree-sitter-c")))
 
-(setq major-mode-remap-alist
-      '((c-mode . c-ts-mode)))
+(use-package yasnippet)
+
+(yas-reload-all)
 
 ;; vertico
 (use-package vertico
@@ -90,18 +65,23 @@
 (use-package orderless)
 
 (use-package eglot
+  :hook
+  (c-ts-mode . eglot-ensure)
+  (go-ts-mode . eglot-ensure)
   :custom
   (add-to-list 'eglot-server-programs '((c-ts-mode) "clangd"))
   (add-to-list 'eglot-server-programs '((go-ts-mode) "gopls")))
 
 (keymap-global-set "C-c r" 'eglot-rename)
 (keymap-global-set "C-c d" 'eglot-format-buffer)
-(keymap-global-set "M-]" 'flymake-goto-next-error)
-(keymap-global-set "M-[" 'flymake-goto-prev-error)
+(keymap-global-set "C-." 'flymake-goto-next-error)
+(keymap-global-set "C-," 'flymake-goto-prev-error)
 (keymap-global-set "C-c k" 'eldoc)
 
 ;; Company
-(use-package company)
+(use-package company
+  :hook
+  (c-ts-mode . company-mode))
 
 (use-package magit
   :config
@@ -113,43 +93,22 @@
   (windmove-default-keybindings)
   (setq windmove-wrap-around t))
 
-;; ocaml
-(use-package tuareg
-  :ensure t)
-
 ;; extra keybinds
 (keymap-global-set "C-c e" 'eval-buffer)
 
-;; extra hooks
-(defun c-hook()
-  (setq tab-width 4)
-  (setq c-basic-offset 4)
-  (display-line-numbers-mode)
-  (company-mode)
-  (setq display-line-numbers 'relative))
+;; languge hooks
+(add-hook 'c-ts-mode-hook (lambda()
+                            (company-mode)
+                            (yas-minor-mode)
+			    (display-line-numbers-mode)
+			    (setq display-line-numbers 'relative)))
 
-(add-hook 'c-mode-hook 'c-ts-hook)
+(add-hook 'go-ts-mode-hook (lambda ()
+			     (company-mode)
+                             (yas-minor-mode)
+			     (display-line-numbers-mode)
+			     (setq display-line-numbers 'relative)))
 
-(defun c++-hook()
-  (setq tab-width 4)
-  (setq c-basic-offset 4)
-  (display-line-numbers-mode)
-  (company-mode)
-  (setq display-line-numbers 'relative))
-
-(add-hook 'c++-mode-hook 'c++-hook)
-
-(defun go-hook()
-  (setq tab-width 4)
-  (setq c-basic-offset 4)
-  (display-line-numbers-mode)
-  (company-mode)
-  (setq display-line-numbers 'relative))
-
-(add-hook 'go-ts-mode-hook 'go-hook)
-
-(defun elisp-hook()
-  (display-line-numbers-mode)
-  (setq display-line-numbers 'relative))
-
-(add-hook 'emacs-lisp-mode-hook 'elisp-hook)
+(add-hook 'emacs-lisp-mode-hook (lambda()
+                                  (display-line-numbers-mode)
+                                  (setq display-line-numbers 'relative)))

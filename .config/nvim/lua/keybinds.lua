@@ -9,8 +9,8 @@ map('n', ']q', '<cmd>cnext<cr>', { noremap = true })
 
 -- {{{ diagnostics
 map('n', '<space>e', vim.diagnostic.open_float, opts)
-map('n', '[d', vim.diagnostic.goto_prev, opts)
-map('n', ']d', vim.diagnostic.goto_next, opts)
+map('n', '<C-,>', vim.diagnostic.goto_prev, opts)
+map('n', '<C-.>', vim.diagnostic.goto_next, opts)
 map('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- }}}
 

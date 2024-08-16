@@ -28,7 +28,7 @@ vim.o.wrap           = true
 vim.o.rnu            = true -- Relative numbers
 vim.o.number         = true -- numbers
 vim.wo.cursorline    = true
-vim.o.background     = 'dark'
+vim.o.background     = 'light'
 vim.g.have_nerd_font = true
 
 vim.o.hlsearch       = false
@@ -64,4 +64,4 @@ vim.opt.path:append('**')
 
 -- }}}
 
-vim.cmd.colorscheme("material-darker")
+vim.cmd.colorscheme("catppuccin")
