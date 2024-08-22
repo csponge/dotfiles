@@ -64,4 +64,4 @@ vim.opt.path:append('**')
 
 -- }}}
 
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("kanagawa-dragon")

@@ -13,8 +13,6 @@
 
 (add-to-list 'default-frame-alist '(font . "IosevkaNerdFontMono-11"))
 
-(load-theme 'wombat)
-
 (setq-default line-spacing 0.12)
 
 ;; Changing bar
@@ -47,6 +45,10 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package color-theme-sanityinc-tomorrow
+  :config
+  (load-theme 'sanityinc-tomorrow-night))
 
 ;; treesitter
 (setq treesit-language-source-alist
@@ -112,3 +114,19 @@
 (add-hook 'emacs-lisp-mode-hook (lambda()
                                   (display-line-numbers-mode)
                                   (setq display-line-numbers 'relative)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(sanityinc-tomorrow-night))
+ '(custom-safe-themes
+   '("b11edd2e0f97a0a7d5e66a9b82091b44431401ac394478beb44389cf54e6db28" "76ddb2e196c6ba8f380c23d169cf2c8f561fd2013ad54b987c516d3cabc00216" "04aa1c3ccaee1cc2b93b246c6fbcd597f7e6832a97aaeac7e5891e6863236f9f" "6bdc4e5f585bb4a500ea38f563ecf126570b9ab3be0598bdf607034bb07a8875" "6fc9e40b4375d9d8d0d9521505849ab4d04220ed470db0b78b700230da0a86c1" default))
+ '(package-selected-packages
+   '(color-theme-sanityinc-tomorrow yasnippet vertico tuareg orderless magit company)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

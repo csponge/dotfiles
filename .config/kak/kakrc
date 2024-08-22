@@ -1,0 +1,30 @@
+## Some pickers
+define-command -hidden open-buffer-picker %{
+  prompt buffer: -menu -buffer-completion %{
+    buffer %val{text}
+  }
+}
+
+define-command -hidden open-file-picker %{
+  prompt file: -menu -shell-script-candidates 'fd --type=file' %{
+    edit -existing %val{text}
+  }
+}
+
+define-command -hidden open-rg-picker %{
+  prompt search: %{
+    prompt refine: -menu -shell-script-candidates "rg -in '%val{text}'" %{
+      eval "edit -existing  %sh{(cut -d ' ' -f 1 | tr ':' ' ' ) <<< $kak_text}"
+    }
+  }
+}
+
+map global user f :open-file-picker<ret>
+map global user b :open-buffer-picker<ret>
+map global user g :open-rg-picker<ret>
+
+colorscheme tomorrow-night
+
+add-highlighter /global number-lines -relative
+
+set-option -add global ui_options terminal_assistant=none
