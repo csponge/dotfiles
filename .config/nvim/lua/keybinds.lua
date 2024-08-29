@@ -44,27 +44,27 @@ map('n', '<leader>g', ':grep ', { noremap = true })
 -- }}}
 
 -- {{{ telescope
-map('n', '<leader>f', '<cmd>Telescope find_files<cr>', opts)
-map('n', '<leader>g', '<cmd>Telescope live_grep<cr>', opts)
-map('n', '<leader>s', '<cmd>Telescope grep_string<cr>', opts)
-map('n', '<leader>b', '<cmd>Telescope buffers<cr>', opts)
+map('n', '<leader>f', '<cmd>Telescope find_files theme=dropdown<cr>', opts)
+map('n', '<leader>b', '<cmd>Telescope buffers theme=dropdown<cr>', opts)
+map('n', '<leader>g', '<cmd>Telescope live_grep theme=ivy<cr>', opts)
+map('n', '<leader>s', '<cmd>Telescope grep_string theme=ivy<cr>', opts)
 -- }}}
 
 map('n', '<leader>t', function()
-    local b = vim.o.background
-    if b == 'dark' then
-        b = 'light'
-    else
-        b = 'dark'
-    end
-    vim.o.background = b
+  local b = vim.o.background
+  if b == 'dark' then
+    b = 'light'
+  else
+    b = 'dark'
+  end
+  vim.o.background = b
 end, opts)
 
 local function restart_lsp()
-    local clients = vim.lsp.get_active_clients()
-    vim.lsp.stop_client(clients)
-    vim.cmd(":edit")
-    print("lsp restarted")
+  local clients = vim.lsp.get_active_clients()
+  vim.lsp.stop_client(clients)
+  vim.cmd(":edit")
+  print("lsp restarted")
 end
 
 map('n', '<leader>lr', function() restart_lsp() end, opts)
@@ -79,8 +79,8 @@ map({ 'i', 's' }, "<C-n>", function() ls.jump(1) end, { silent = true })
 map({ 'i', 's' }, '<C-p>', function() ls.jump(-1) end, { silent = true })
 
 map({ 'i', 's' }, '<C-e>', function()
-    if ls.choice_active() then
-        ls.change_choice(1)
-    end
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
 end, { silent = true })
 -- }}}

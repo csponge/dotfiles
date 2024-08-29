@@ -25,11 +25,11 @@ set $menu dmenu_run
 set $background #51414F
 
 output eDP-1 {
-  bg ~/Pictures/Wallpapers/purple_mountains.jpg fill
+  bg ~/Pictures/Wallpapers/norway.jpg fill
   scale 1.75
 }
 output DP-2 {
-  bg ~/Pictures/Wallpapers/purple_mountains.jpg fill
+  bg ~/Pictures/Wallpapers/norway.jpg fill
 }
 
 #

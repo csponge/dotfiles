@@ -1,14 +1,14 @@
 -- setup lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -37,9 +37,6 @@ vim.o.smartcase      = true -- But don't ignore it when using upper case
 vim.o.smarttab       = true
 vim.o.smartindent    = true
 vim.o.expandtab      = true -- Convert tabs to spaces.
-vim.o.tabstop        = 4
-vim.o.softtabstop    = 4
-vim.o.shiftwidth     = 4
 vim.o.mouse          = 'a'
 
 vim.o.hidden         = true -- Do not save when switching buffers
@@ -64,4 +61,4 @@ vim.opt.path:append('**')
 
 -- }}}
 
-vim.cmd.colorscheme("kanagawa-dragon")
+vim.cmd.colorscheme("rose-pine")

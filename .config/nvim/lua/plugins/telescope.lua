@@ -7,7 +7,11 @@ return {
     'nvim-telescope/telescope-fzf-native.nvim'
   },
   config = function()
-    require('telescope').setup {}
+    require('telescope').setup {
+      defaults = {
+        preview = false
+      }
+    }
     require('telescope').load_extension('fzf')
   end
 }
