@@ -11,7 +11,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
-(add-to-list 'default-frame-alist '(font . "IosevkaNerdFontMono-11"))
+(add-to-list 'default-frame-alist '(font . "IosevkaNerdFont-11"))
 
 (setq-default line-spacing 0.12)
 
@@ -46,14 +46,26 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(use-package color-theme-sanityinc-tomorrow
+;; doom-themes
+(use-package doom-themes
+  :ensure t
   :config
-  (load-theme 'sanityinc-tomorrow-night))
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-spacegrey t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 
 ;; treesitter
-(setq treesit-language-source-alist
-      '((go "https://github.com/tree-sitter/tree-sitter-go")
-	(c "https://github.com/tree-sitter/tree-sitter-c")))
+(use-package treesit-auto
+  :config
+  (global-treesit-auto-mode))
+
+(setq treesit-auto-langs '(c go gomod))
 
 (use-package yasnippet)
 
@@ -69,10 +81,12 @@
 (use-package eglot
   :hook
   (c-ts-mode . eglot-ensure)
+  (c++-mode . eglot-ensure)
   (go-ts-mode . eglot-ensure)
   :custom
   (add-to-list 'eglot-server-programs '((c-ts-mode) "clangd"))
-  (add-to-list 'eglot-server-programs '((go-ts-mode) "gopls")))
+  (add-to-list 'eglot-server-programs '((go-ts-mode) "gopls"))
+  (add-to-list 'eglot-server-programs '((c++-mode) "clangd")))
 
 (keymap-global-set "C-c r" 'eglot-rename)
 (keymap-global-set "C-c d" 'eglot-format-buffer)
@@ -83,7 +97,9 @@
 ;; Company
 (use-package company
   :hook
-  (c-ts-mode . company-mode))
+  (c-ts-mode . company-mode)
+  (c++-ts-mode . company-mode)
+  (go-ts-mode . company-mode))
 
 (use-package magit
   :config
@@ -99,16 +115,25 @@
 (keymap-global-set "C-c e" 'eval-buffer)
 
 ;; languge hooks
+(add-hook 'c++-mode-hook (lambda()
+			      (yas-minor-mode)
+			      (display-line-numbers-mode)
+			      (setq tab-width 4)
+			      (setq display-line-numbers 'relative)))
+
 (add-hook 'c-ts-mode-hook (lambda()
-                            (company-mode)
                             (yas-minor-mode)
 			    (display-line-numbers-mode)
+			    (setq tab-width 4)
+			    (setq c-ts-mode-indent-offset 4)
 			    (setq display-line-numbers 'relative)))
 
 (add-hook 'go-ts-mode-hook (lambda ()
-			     (company-mode)
-                             (yas-minor-mode)
+			     (yas-minor-mode)
 			     (display-line-numbers-mode)
+			     (setq indent-tabs-mode t)
+			     (setq tab-width 4)
+			     (setq go-ts-mode-indent-offset 4)
 			     (setq display-line-numbers 'relative)))
 
 (add-hook 'emacs-lisp-mode-hook (lambda()
@@ -119,11 +144,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(sanityinc-tomorrow-night))
  '(custom-safe-themes
-   '("b11edd2e0f97a0a7d5e66a9b82091b44431401ac394478beb44389cf54e6db28" "76ddb2e196c6ba8f380c23d169cf2c8f561fd2013ad54b987c516d3cabc00216" "04aa1c3ccaee1cc2b93b246c6fbcd597f7e6832a97aaeac7e5891e6863236f9f" "6bdc4e5f585bb4a500ea38f563ecf126570b9ab3be0598bdf607034bb07a8875" "6fc9e40b4375d9d8d0d9521505849ab4d04220ed470db0b78b700230da0a86c1" default))
+   '("77fff78cc13a2ff41ad0a8ba2f09e8efd3c7e16be20725606c095f9a19c24d3d" "ffafb0e9f63935183713b204c11d22225008559fa62133a69848835f4f4a758c" default))
  '(package-selected-packages
-   '(color-theme-sanityinc-tomorrow yasnippet vertico tuareg orderless magit company)))
+   '(doom-themes yasnippet vertico tuareg treesit-auto orderless magit company color-theme-sanityinc-tomorrow)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
