@@ -53,6 +53,7 @@ vim.opt.smartcase    = true
 vim.opt.updatetime   = 250
 vim.opt.scrolloff    = 10
 vim.opt.incsearch    = true
+vim.opt.inccommand   = "split"
 vim.opt.wildmenu     = true
 vim.opt.wildmode     = 'longest,full' -- Display auto-complete in Command Mode
 vim.opt.wildoptions  = 'fuzzy'
@@ -61,4 +62,4 @@ vim.opt.path:append('**')
 
 -- }}}
 
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("melange")

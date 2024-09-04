@@ -3,6 +3,7 @@
   "fd": { "branch": "master", "commit": "b19136871310b01500b4f09eadd7387b8476be47" },
   "kanagawa.nvim": { "branch": "master", "commit": "f491b0fe68fffbece7030181073dfe51f45cda81" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
+  "melange-nvim": { "branch": "master", "commit": "36d02139979f840a170de8c19a72beaae2ef1741" },
   "nvim-treesitter": { "branch": "master", "commit": "585860a1865853d2c287c8ef534297da8115818e" },
   "nvim-treesitter-context": { "branch": "master", "commit": "0f3332788e0bd37716fbd25f39120dcfd557c90f" },
   "oil.nvim": { "branch": "master", "commit": "30e0438ff08f197d7ce4a417445ab97ee72efe2d" },
