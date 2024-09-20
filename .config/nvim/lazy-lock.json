@@ -1,15 +1,16 @@
 {
   "LuaSnip": { "branch": "master", "commit": "03c8e67eb7293c404845b3982db895d59c0d1538" },
-  "fd": { "branch": "master", "commit": "b19136871310b01500b4f09eadd7387b8476be47" },
+  "fd": { "branch": "master", "commit": "8e0bd33af7c31ce30d5f03b608bfb65f82a95b2b" },
   "kanagawa.nvim": { "branch": "master", "commit": "f491b0fe68fffbece7030181073dfe51f45cda81" },
-  "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
+  "lazy.nvim": { "branch": "main", "commit": "460e1cd8f24e364d54543a4b0e83f6f4ec1f65fb" },
   "melange-nvim": { "branch": "master", "commit": "36d02139979f840a170de8c19a72beaae2ef1741" },
-  "nvim-treesitter": { "branch": "master", "commit": "585860a1865853d2c287c8ef534297da8115818e" },
-  "nvim-treesitter-context": { "branch": "master", "commit": "0f3332788e0bd37716fbd25f39120dcfd557c90f" },
-  "oil.nvim": { "branch": "master", "commit": "30e0438ff08f197d7ce4a417445ab97ee72efe2d" },
-  "plenary.nvim": { "branch": "master", "commit": "ec289423a1693aeae6cd0d503bac2856af74edaa" },
-  "ripgrep": { "branch": "master", "commit": "e0f1000df67f82ab0e735bad40e9b45b2d774ef0" },
+  "nvim-lspconfig": { "branch": "master", "commit": "46ce5fd8c081f179a509da423077f8372e63ffc4" },
+  "nvim-treesitter": { "branch": "master", "commit": "b9002f6fe679e2b8025a46116081c0da629a6b8c" },
+  "nvim-treesitter-context": { "branch": "master", "commit": "7f7eeaa99e5a9beab518f502292871ae5f20de6f" },
+  "oil.nvim": { "branch": "master", "commit": "f60bb7f793477d99ef1acf39e920bf2ca4e644de" },
+  "plenary.nvim": { "branch": "master", "commit": "f4faa5a3dc77a694ba58f42585985fed88540ac6" },
+  "ripgrep": { "branch": "master", "commit": "8bd595029656370927f846406ca4ce4ffe0b3e91" },
   "rose-pine": { "branch": "main", "commit": "8b1fd252255a7f2c41b4192a787ab62660b29f72" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
-  "telescope.nvim": { "branch": "master", "commit": "5972437de807c3bc101565175da66a1aa4f8707a" }
+  "telescope.nvim": { "branch": "master", "commit": "40d6d81b1d2e527bbe5d3fe5e6896de745bc1c84" }
 }

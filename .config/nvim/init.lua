@@ -18,7 +18,6 @@ require("lazy").setup("plugins")
 require('autocmds')
 require('keybinds')
 require('snip')
-require('lsp')
 
 -- {{{ options
 -- Visual
@@ -28,7 +27,7 @@ vim.o.wrap           = true
 vim.o.rnu            = true -- Relative numbers
 vim.o.number         = true -- numbers
 vim.wo.cursorline    = true
-vim.o.background     = 'light'
+vim.o.background     = 'dark'
 vim.g.have_nerd_font = true
 
 vim.o.hlsearch       = false
@@ -62,4 +61,4 @@ vim.opt.path:append('**')
 
 -- }}}
 
-vim.cmd.colorscheme("melange")
+vim.cmd.colorscheme("vis")
