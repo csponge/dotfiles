@@ -16,8 +16,8 @@ local palette = {
   red = "#FF2A2D",
 
   -- slate
-  light_slate = "#99a58b",
-  slate = "#b2b568",
+  light_slate = "#a4aa9e",
+  slate = "#a8ab80",
 
   -- green
   green = "#55a046",
@@ -29,7 +29,7 @@ local palette = {
 
   -- blue
   dark_blue = "#465571",
-  light_blue = "#5597c9",
+  light_blue = "#6385a4",
 
   -- purple
   purple = "#CBC3E3",
@@ -220,6 +220,7 @@ local highlights2 = {
   DiagnosticUnderlineWarn = { undercurl = true, sp = palette.orange },
   DiagnosticUnderlineInfo = { undercurl = true, sp = palette.light_blue },
   DiagnosticUnderlineHint = { undercurl = true, sp = palette.light_blue },
+  DiagnosticUnnecessary = { fg = palette.dimmed, italic = true, undercurl = true },
 
   LspSignatureActiveParameter = { fg = palette.orange },
   LspCodeLens = { fg = palette.pale },

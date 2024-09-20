@@ -17,7 +17,6 @@ vim.g.mapleader = " "
 require("lazy").setup("plugins")
 require('autocmds')
 require('keybinds')
-require('snip')
 
 -- {{{ options
 -- Visual
