@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: C Include
+# key: ci
+# --
+#include <$0>

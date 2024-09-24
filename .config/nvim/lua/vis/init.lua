@@ -2,9 +2,9 @@ local M = {}
 
 local palette = {
   -- base colors
-  background = "#141414",
+  background = "#1d1d1d",
   background_lighter = "#222222",
-  separator = "#1f1f1f",
+  separator = "#151515",
   foreground = "#d3dedb",
   dimmed = "#696969",
 
