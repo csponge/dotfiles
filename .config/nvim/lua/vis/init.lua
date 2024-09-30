@@ -291,7 +291,7 @@ local highlights2 = {
   -- @variable.builtin (Special)     built-in variable names (e.g. `this`, `self`)
   ["@variable.builtin"] = { fg = palette.purple, italic = true },
   -- @variable.parameter             parameters of a function
-  ["@variable.parameter"] = { fg = palette.yellow },
+  ["@variable.parameter"] = { fg = palette.gold },
   -- @variable.parameter.builtin     special parameters (e.g. `_`, `it`)
   -- @variable.member                object and struct fields
   ["@variable.member"] = { fg = palette.light_blue },
@@ -352,7 +352,7 @@ local highlights2 = {
   -- @keyword.function       keywords that define a function (e.g. `func` in Go, `def` in Python)
   -- @keyword.operator       operators that are English words (e.g. `and`, `or`)
   ["@keyword.function"] = { fg = palette.light_blue, bold = true },
-  ["@keyword.operator"] = { fg = palette.yellow, bold = true },
+  ["@keyword.operator"] = { fg = palette.gold, bold = true },
   -- @keyword.import         keywords for including modules (e.g. `import`, `from` in Python)
   ["@keyword.import"] = { link = "PreProc" },
   -- @keyword.type           keywords defining composite types (e.g. `struct`, `enum`)

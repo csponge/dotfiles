@@ -24,8 +24,13 @@ map('n', "<C-Right>", "<cmd>winc l<cr>", opts)
 map('n', '<C-s>', '<cmd> source %<cr>', opts)
 
 -- {{{ tabbing
+map('n', '<M-t>', '<cmd>tabnew<cr>', opts)
 map('n', '<M-,>', '<cmd>tabprev<cr>', opts)
 map('n', '<M-.>', '<cmd>tabnext<cr>', opts)
+-- }}}
+
+-- {{{ term
+map('n', '<C-t>', '<cmd>term<cr>', opts)
 -- }}}
 
 -- {{{ navigation
@@ -39,35 +44,11 @@ map('n', '<leader>cn', '<cmd>cnext<cr>', { desc = 'Open compile errors' })
 map('n', '<leader>cp', '<cmd>cprevious<cr>', { desc = 'Open compile errors' })
 -- }}}
 
--- {{{ grep
+-- {{{ searching
 map('n', '<leader>g', ':grep ', { noremap = true })
+map('n', '<leader>f', ':find ', { noremap = true})
+map('n', '<leader>b', ':buffer ', { noremap = true})
 -- }}}
-
--- {{{ telescope
-map('n', '<leader>f', '<cmd>Telescope find_files theme=dropdown<cr>', opts)
-map('n', '<leader>b', '<cmd>Telescope buffers theme=dropdown<cr>', opts)
-map('n', '<leader>g', '<cmd>Telescope live_grep theme=ivy<cr>', opts)
-map('n', '<leader>s', '<cmd>Telescope grep_string theme=ivy<cr>', opts)
--- }}}
-
-map('n', '<leader>t', function()
-  local b = vim.o.background
-  if b == 'dark' then
-    b = 'light'
-  else
-    b = 'dark'
-  end
-  vim.o.background = b
-end, opts)
-
-local function restart_lsp()
-  local clients = vim.lsp.get_active_clients()
-  vim.lsp.stop_client(clients)
-  vim.cmd(":edit")
-  print("lsp restarted")
-end
-
-map('n', '<leader>lr', function() restart_lsp() end, opts)
 
 -- {{{ luasnip
 local ls = require('luasnip')

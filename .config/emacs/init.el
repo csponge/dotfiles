@@ -15,9 +15,6 @@
 
 (setq-default line-spacing 0.10)
 
-;; theme
-(load-theme 'modus-operandi)
-
 ;; Changing bar
 (setq-default cursor-type 't)
 
@@ -25,8 +22,16 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+;; theme
+(load-theme 'sanityinc-tomorrow-night t)
+
 ;; gdb
 (setq gdb-many-windows 1)
+
+;; ido
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;; path
 (setenv "PATH" (concat (getenv "PATH")
@@ -49,16 +54,13 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; theme
+(use-package color-theme-sanityinc-tomorrow)
+
+;; yas
 (use-package yasnippet)
 
 (yas-reload-all)
-
-;; vertico
-(use-package vertico
-  :init
-  (vertico-mode))
-
-(use-package orderless)
 
 (use-package eglot
   :hook
@@ -77,13 +79,6 @@
 (keymap-global-set "C-." 'flymake-goto-next-error)
 (keymap-global-set "C-," 'flymake-goto-prev-error)
 (keymap-global-set "C-c k" 'eldoc)
-
-;; Company
-(use-package company
-  :hook
-  (c-ts-mode . company-mode)
-  (c++-ts-mode . company-mode)
-  (go-ts-mode . company-mode))
 
 (use-package magit
   :config
@@ -128,3 +123,18 @@
 (add-hook 'emacs-lisp-mode-hook (lambda()
                                   (display-line-numbers-mode)
                                   (setq display-line-numbers 'relative)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("6fc9e40b4375d9d8d0d9521505849ab4d04220ed470db0b78b700230da0a86c1" default))
+ '(package-selected-packages
+   '(yasnippet treesit-auto magit color-theme-sanityinc-tomorrow)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

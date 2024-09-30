@@ -9,10 +9,10 @@ local on_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
   -- Telescope keybinds
-  map('n', 'gi', '<cmd> Telescope lsp_implementations theme=dropdown<cr>', bufopts)
-  map('n', 'gr', '<cmd>Telescope lsp_references theme=dropdown<cr>', bufopts)
-  map('n', 'gd', '<cmd>Telescope lsp_definitions theme=dropdown<cr>', bufopts)
-  map('n', '<leader>o', '<cmd>Telescope lsp_document_symbols theme=dropdown<cr>', bufopts)
+  map('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  map('n', 'gr', vim.lsp.buf.references, bufopts)
+  map('n', 'gd', vim.lsp.buf.definition, bufopts)
+  map('n', '<leader>o', vim.lsp.buf.workspace_symbol, bufopts)
 
   map('n', '<S-k>', vim.lsp.buf.hover, bufopts)
   map('n', 'gs', vim.lsp.buf.signature_help, bufopts)
