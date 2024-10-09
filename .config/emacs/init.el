@@ -23,21 +23,19 @@
 (setq make-backup-files nil)
 
 ;; theme
-(load-theme 'sanityinc-tomorrow-night t)
+(load-theme 'sanityinc-tomorrow-bright t)
 
 ;; gdb
 (setq gdb-many-windows 1)
-
-;; ido
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
 
 ;; path
 (setenv "PATH" (concat (getenv "PATH")
 		       ":/usr/local/bin:/usr/local/go/bin:/home/colten/go/bin:/home/colten/.local/bin"))
 
 (setq exec-path (append exec-path '("/usr/local/go/bin" "/home/colten/go/bin" "/home/colten/.local/bin")))
+
+;; icomplete
+(icomplete-mode t)
 
 ;; Package management
 (require 'package)
@@ -57,6 +55,10 @@
 ;; theme
 (use-package color-theme-sanityinc-tomorrow)
 
+;; expand-region
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+
 ;; yas
 (use-package yasnippet)
 
@@ -64,12 +66,12 @@
 
 (use-package eglot
   :hook
-  (c-ts-mode . eglot-ensure)
+  (c-mode . eglot-ensure)
   (c++-mode . eglot-ensure)
   (go-ts-mode . eglot-ensure)
   (python-mode . eglot-ensure)
   :custom
-  (add-to-list 'eglot-server-programs '((c-ts-mode) "clangd"))
+  (add-to-list 'eglot-server-programs '((c-mode) "clangd"))
   (add-to-list 'eglot-server-programs '((go-ts-mode) "gopls"))
   (add-to-list 'eglot-server-programs '((c++-mode) "clangd"))
   (add-to-list 'eglot-server-programs '((python-mode) "pylsp")))
@@ -90,6 +92,10 @@
   (windmove-default-keybindings)
   (setq windmove-wrap-around t))
 
+;; auto-mode
+(add-to-list 'auto-mode-alist
+	     '("\\.go\\'" . go-ts-mode))
+
 ;; extra keybinds
 (keymap-global-set "C-c e" 'eval-buffer)
 
@@ -100,11 +106,10 @@
 			      (setq tab-width 4)
 			      (setq display-line-numbers 'relative)))
 
-(add-hook 'c-ts-mode-hook (lambda()
+(add-hook 'c-mode-hook (lambda()
                             (yas-minor-mode)
 			    (display-line-numbers-mode)
 			    (setq tab-width 4)
-			    (setq c-ts-mode-indent-offset 4)
 			    (setq display-line-numbers 'relative)))
 
 (add-hook 'go-ts-mode-hook (lambda ()
@@ -123,18 +128,3 @@
 (add-hook 'emacs-lisp-mode-hook (lambda()
                                   (display-line-numbers-mode)
                                   (setq display-line-numbers 'relative)))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("6fc9e40b4375d9d8d0d9521505849ab4d04220ed470db0b78b700230da0a86c1" default))
- '(package-selected-packages
-   '(yasnippet treesit-auto magit color-theme-sanityinc-tomorrow)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
